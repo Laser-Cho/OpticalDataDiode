@@ -4,7 +4,7 @@
 [![.NET](https://img.shields.io/badge/.NET-8.0--windows-purple.svg)](https://dotnet.microsoft.com/)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11%20x64-0078D6.svg)](https://microsoft.com/)
 
-> **망분리(Air-Gapped) 환경**에서 네트워크 연결 없이, **원격 데스크톱 화면과 웹캠만으로 MS PowerPoint의 복합 도형, 서식, 벡터 그래픽 클립보드 데이터를 100% 무손실 전송하는 광학 데이터 다이오드(Optical Data Diode)** 시스템입니다.
+> **망분리(Air-Gapped) 환경**에서 네트워크 연결 없이, **원격 데스크톱 화면과 웹캠만으로 특정 클립보드 데이터를 100% 무손실 전송하는 광학 데이터 다이오드(Optical Data Diode)** 시스템입니다.
 
 ---
 
