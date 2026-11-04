@@ -1,0 +1,20 @@
+## Visual Studio / .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Local .NET SDK bundle
+**/.dotnet/
+
+## Build artifacts
+*.dll
+*.exe
+*.pdb
+!/lib/*.dll
+
+## OS generated
+.DS_Store
+Thumbs.db

@@ -1,0 +1,91 @@
+<UserControl x:Class="OpticalDataDiode.Views.SenderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900" Background="#F8FAFC">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 좌측: 컨트롤 및 상태 패널 -->
+        <Border Grid.Column="0" Background="White" CornerRadius="12" Padding="20" Margin="0,0,15,0"
+                BorderBrush="#E2E8F0" BorderThickness="1">
+            <StackPanel>
+                <TextBlock Text="송신 컨트롤러" FontSize="20" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,15"/>
+                
+                <Button x:Name="BtnCapture" Content="📋 PPT 클립보드 캡처" Height="45" 
+                        Background="#2563EB" Foreground="White" FontWeight="Bold" FontSize="14"
+                        Click="BtnCapture_Click" Margin="0,0,0,10"/>
+
+                <Button x:Name="BtnToggleBroadcast" Content="▶ QR 전송 시작" Height="45"
+                        Background="#10B981" Foreground="White" FontWeight="Bold" FontSize="14"
+                        IsEnabled="False" Click="BtnToggleBroadcast_Click" Margin="0,0,0,20"/>
+
+                <Separator Margin="0,0,0,15"/>
+
+                <TextBlock Text="전송 속도 (FPS)" FontSize="13" FontWeight="SemiBold" Foreground="#475569"/>
+                <Grid Margin="0,5,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="45"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider x:Name="FpsSlider" Minimum="1" Maximum="30" Value="12" 
+                            TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Center"
+                            ValueChanged="FpsSlider_ValueChanged"/>
+                    <TextBlock Grid.Column="1" Text="{Binding ElementName=FpsSlider, Path=Value, StringFormat={}{0:0} FPS}" 
+                               HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" Foreground="#2563EB"/>
+                </Grid>
+
+                <Separator Margin="0,0,0,15"/>
+
+                <TextBlock Text="전송 페이로드 정보" FontSize="15" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,10"/>
+                
+                <StackPanel Margin="0,0,0,8">
+                    <TextBlock Text="감지된 포맷 수" FontSize="12" Foreground="#64748B"/>
+                    <TextBlock x:Name="TxtFormatCount" Text="0 개" FontSize="14" FontWeight="SemiBold" Foreground="#0F172A"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,0,0,8">
+                    <TextBlock Text="원본 / 압축 크기" FontSize="12" Foreground="#64748B"/>
+                    <TextBlock x:Name="TxtDataSize" Text="0 KB / 0 KB" FontSize="14" FontWeight="SemiBold" Foreground="#0F172A"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,0,0,8">
+                    <TextBlock Text="파운틴 원본 블록 수 (K)" FontSize="12" Foreground="#64748B"/>
+                    <TextBlock x:Name="TxtBlockK" Text="0 블록" FontSize="14" FontWeight="SemiBold" Foreground="#0F172A"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,0,0,8">
+                    <TextBlock Text="현재 방출 심볼 (ESI)" FontSize="12" Foreground="#64748B"/>
+                    <TextBlock x:Name="TxtEmittedEsi" Text="#0" FontSize="18" FontWeight="Bold" Foreground="#2563EB"/>
+                </StackPanel>
+
+                <TextBlock x:Name="TxtStatus" Text="클립보드를 캡처해주세요." FontSize="12" Foreground="#94A3B8" 
+                           TextWrapping="Wrap" Margin="0,15,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- 우측: 고밀도 QR 디스플레이 화면 -->
+        <Border Grid.Column="1" Background="White" CornerRadius="12" Padding="20"
+                BorderBrush="#E2E8F0" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="단방향 광학 QR 스트림" FontSize="16" FontWeight="SemiBold" Foreground="#334155" Margin="0,0,0,10"/>
+
+                <Border Grid.Row="1" Background="#F1F5F9" CornerRadius="8" Padding="10">
+                    <Viewbox Stretch="Uniform">
+                        <Image x:Name="QrDisplayImage" Width="550" Height="550" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                    </Viewbox>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
